@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
-require './sound'
+require './roscil'
 
-Sound.osc(440)
-Sound.tri(220)
-Sound.saw(110)
-Sound.pulse(880)
+Roscil.sin(440)
+Roscil.tri(220)
+Roscil.saw(110)
+Roscil.pulse(880)
