@@ -1,0 +1,6 @@
+* Compile
+ruby extconf.rb
+make
+
+* Test
+ruby example_sound.rb
