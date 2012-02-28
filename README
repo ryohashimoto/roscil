@@ -15,10 +15,10 @@ You can generate sounds by following codes.
   Roscil.tri(110) # 110Hz triangle wave
   Roscil.pulse(880) # 880Hz pulse wave
 
-We tested this package on Mac OS X 10.6 and MacPorts 2.0.3.
+We tested this package on Mac OS X 10.6.8, Xcode 3.2.6 and MacPorts 2.0.3.
 You can install PortAudio library by
 
-  sudo port install portaudio.
+  sudo port install portaudio
 
 If you use this package on Windows or Linux, please modify extconf.rb.
 
