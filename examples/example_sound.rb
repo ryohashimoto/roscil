@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-require './roscil'
+require 'roscil'
 
 Roscil.sin(440)
 Roscil.tri(220)

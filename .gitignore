@@ -1,5 +1,7 @@
 Makefile
-mkmf.log
+*.log
 *.o
 *~
-roscil.bundle
+*.bundle
+*.so
+*.gem
