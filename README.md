@@ -1,8 +1,8 @@
 # Roscil
 
-Author:: Ryo Hashimoto
-Copyright:: Copyright (c) 2012 Ryo Hashimoto
-License:: MIT License
+* Author: Ryo Hashimoto
+* Copyright: Copyright (c) 2012 Ryo Hashimoto
+* License: MIT License
 
 This package contains simple Ruby sound generator using PortAudio.
 PortAudio is a cross-platform interface to audio hardwares.
@@ -28,7 +28,7 @@ In Mac systems with MacPorts, you can install PortAudio library by
 
 In deb based Linux systems
 
-    sudo apt-get install portaudio
+    sudo apt-get install libportaudio-dev
 
 If you use this package on Windows or other systems, please modify extconf.rb.
 
