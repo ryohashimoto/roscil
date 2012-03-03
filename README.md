@@ -37,3 +37,9 @@ If you use this package on Windows or other systems, please modify extconf.rb.
 * PortAudio, v19 or higher
 * Ruby, version 1.9.3 or higher
 
+## Building gem
+
+You can build gem package by following.
+    $ cd roscil
+    $ gem build roscil.gemspec
+    $ gem install roscil-0.0.1.gem
