@@ -1,7 +1,7 @@
 # Roscil
 
 * Author: Ryo Hashimoto
-* Copyright: Copyright (c) 2012 Ryo Hashimoto
+* Copyright: Copyright (c) 2012-2013 Ryo Hashimoto
 * License: MIT License
 
 This package contains simple Ruby sound generator using PortAudio.
@@ -19,10 +19,17 @@ You can generate sounds by following codes.
 
 We tested this package on following platforms.
 
+* Mac OS X 10.8.4, Xcode 4.6.3 and Homebrew 0.9.4
 * Mac OS X 10.6.8, Xcode 3.2.6 and MacPorts 2.0.3
 * Ubuntu 10.04 LTS (32bit) and PortAudio v19 installed from the sounce (pa_stable_v19_20111121)
 
-In Mac systems with MacPorts, you can install PortAudio library by
+In Mac systems, you can install PortAudio library by
+
+with Homebrew
+
+    brew install portaudio
+
+with MacPorts
 
     sudo port install portaudio
 
@@ -34,8 +41,8 @@ If you use this package on Windows or other systems, please modify extconf.rb.
 
 ## Requirements
 
-* PortAudio, v19 or higher
-* Ruby, version 1.9.3 or higher
+* PortAudio, v19
+* Ruby, version 1.9.3, 2.0.0
 
 ## Building gem
 
