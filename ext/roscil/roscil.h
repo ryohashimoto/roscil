@@ -25,6 +25,6 @@ static int set_saw_data(waveData *dp);
 static int set_pulse_data(waveData *dp);
 static int engine_start(PaStreamParameters *sp);
 static int engine_end();
-static int engine_play(PaStreamParameters *sp, waveData *dp);
+static int engine_play(PaStreamParameters *sp, waveData *dp, VALUE milliseconds);
 void Init_roscil();
 void pa_error_quit(PaError err);

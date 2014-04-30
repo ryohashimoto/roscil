@@ -8,7 +8,6 @@ VALUE rb_eRoscilDomainError;
 #define domain_error(msg) \
     rb_raise(rb_eRoscilDomainError, "An error is occurred - " #msg);
 
-#define NUM_SECONDS   (5)
 #define SAMPLE_RATE   (44100)
 #define FRAMES_PER_BUFFER  (64)
 
@@ -139,7 +138,7 @@ static int set_pulse_data(waveData *dp)
 static int engine_start(PaStreamParameters *sp)
 {
     rsound *rsnd;
-    
+
     rsnd = (rsound *)malloc(sizeof(rsound));
     rsnd->running = 0;
 
@@ -164,7 +163,7 @@ static int engine_end()
     return 0;
 }
 
-static int engine_play(PaStreamParameters *sp, waveData *dp)
+static int engine_play(PaStreamParameters *sp, waveData *dp, VALUE milliseconds)
 {
     PaStream *stream;
     PaError err;
@@ -182,7 +181,8 @@ static int engine_play(PaStreamParameters *sp, waveData *dp)
     if (err != paNoError)
 	pa_error_quit(err);
 
-    Pa_Sleep(NUM_SECONDS*1000);
+    int ms = NUM2INT(milliseconds);
+    Pa_Sleep(ms);
 
     err = Pa_StopStream(stream);
     if (err != paNoError)
@@ -195,7 +195,7 @@ static int engine_play(PaStreamParameters *sp, waveData *dp)
     return 0;
 }
 
-static VALUE roscil_sin(VALUE obj, VALUE freq)
+static VALUE roscil_sin(VALUE obj, VALUE freq, VALUE milliseconds)
 {
     PaStreamParameters *sp;
     int i;
@@ -211,11 +211,11 @@ static VALUE roscil_sin(VALUE obj, VALUE freq)
     sp->hostApiSpecificStreamInfo = NULL;
 
     engine_start(sp);
-    engine_play(sp, dp);
+    engine_play(sp, dp, milliseconds);
     engine_end();
 }
 
-static VALUE roscil_tri(VALUE obj, VALUE freq)
+static VALUE roscil_tri(VALUE obj, VALUE freq, VALUE milliseconds)
 {
     PaStreamParameters *sp;
     int i;
@@ -231,11 +231,11 @@ static VALUE roscil_tri(VALUE obj, VALUE freq)
     sp->hostApiSpecificStreamInfo = NULL;
 
     engine_start(sp);
-    engine_play(sp, dp);
+    engine_play(sp, dp, milliseconds);
     engine_end();
 }
 
-static VALUE roscil_saw(VALUE obj, VALUE freq)
+static VALUE roscil_saw(VALUE obj, VALUE freq, VALUE milliseconds)
 {
     PaStreamParameters *sp;
     int i;
@@ -251,11 +251,11 @@ static VALUE roscil_saw(VALUE obj, VALUE freq)
     sp->hostApiSpecificStreamInfo = NULL;
 
     engine_start(sp);
-    engine_play(sp, dp);
+    engine_play(sp, dp, milliseconds);
     engine_end();
 }
 
-static VALUE roscil_pulse(VALUE obj, VALUE freq)
+static VALUE roscil_pulse(VALUE obj, VALUE freq, VALUE milliseconds)
 {
     PaStreamParameters *sp;
     int i;
@@ -271,7 +271,7 @@ static VALUE roscil_pulse(VALUE obj, VALUE freq)
     sp->hostApiSpecificStreamInfo = NULL;
 
     engine_start(sp);
-    engine_play(sp, dp);
+    engine_play(sp, dp, milliseconds);
     engine_end();
 }
 
@@ -280,10 +280,10 @@ void Init_roscil()
     rb_mRoscil = rb_define_module("Roscil");
     rb_eRoscilDomainError = rb_define_class_under(rb_mRoscil, "DomainError", rb_eStandardError);
 
-    rb_define_module_function(rb_mRoscil, "sin", roscil_sin, 1);
-    rb_define_module_function(rb_mRoscil, "tri", roscil_tri, 1);
-    rb_define_module_function(rb_mRoscil, "saw", roscil_saw, 1);
-    rb_define_module_function(rb_mRoscil, "pulse", roscil_pulse, 1);
+    rb_define_module_function(rb_mRoscil, "sin", roscil_sin, 2);
+    rb_define_module_function(rb_mRoscil, "tri", roscil_tri, 2);
+    rb_define_module_function(rb_mRoscil, "saw", roscil_saw, 2);
+    rb_define_module_function(rb_mRoscil, "pulse", roscil_pulse, 2);
 }
 
 void pa_error_quit(PaError err)
