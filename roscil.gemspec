@@ -1,6 +1,6 @@
 Gem::Specification.new do |spec|
   spec.name = "roscil"
-  spec.version = "0.0.1"
+  spec.version = "1.0.0"
   spec.platform = Gem::Platform::RUBY
   spec.summary = "Sound generator (Using PortAudio) for Ruby"
   spec.files = ["README.md"] + Dir.glob('lib/**/*.rb') + Dir.glob('ext/**/*.{c,h,rb}')
